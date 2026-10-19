@@ -1,0 +1,51 @@
+# Maintainer: nhktmdzhg
+# Skeleton based on the opendoas PKGBUILD by Ivy Foster <iff@archlinux.org>
+# and T.J. Townsend <blakkheim@archlinux.org>
+
+_gitname=opendoas-cpp
+pkgname=${_gitname}-git
+pkgver=r296.003fae8
+pkgrel=1
+pkgdesc="OpenDoas, doasedit and fudo rewritten in C++23 as one multicall binary (doas, doasedit, sudo)"
+arch=(x86_64)
+url="https://github.com/nhktmdzhg/${_gitname}"
+license=('MIT' 'ISC' 'BSD-2-Clause')
+depends=(glibc libxcrypt)
+makedepends=(bison clang cmake git lld ninja)
+provides=(opendoas doas sudo doasedit)
+conflicts=(opendoas doas sudo doasedit)
+replaces=(opendoas)
+source=("git+${url}.git")
+sha256sums=(SKIP)
+
+pkgver() {
+    cd ${_gitname}
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd ${_gitname}
+    
+    export CXXFLAGS="${CXXFLAGS//-Wp,-D_FORTIFY_SOURCE=2/}"
+    
+    cmake -B build -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=lld \
+    -DDOAS_AUTH_PROVIDER=SHADOW \
+    -DDOAS_PERSIST=ON \
+    -DDOAS_LICENSE_DIR="share/licenses/${pkgname}" \
+    -DBUILD_TESTING=ON
+    cmake --build build
+}
+
+check() {
+    cd ${_gitname}
+    ctest --test-dir build --output-on-failure
+}
+
+package() {
+    cd ${_gitname}
+    DESTDIR="${pkgdir}" cmake --install build
+}
