@@ -132,11 +132,6 @@ jobs:
             echo "::warning::No ${REPO_DB_NAME}.files.tar.gz asset in release '$RELEASE_TAG'; every package will be treated as needing a rebuild."
           fi
 
-          echo "Updating checksums for $PKG..."
-          if ! sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && updpkgsums"; then
-            echo "::warning::updpkgsums failed for $PKG; proceeding with existing checksums."
-          fi
-
           echo "Checking status for $PKG"
           VCS_PREPASS_OK=true
           if grep -q 'pkgver()' "$PKG/PKGBUILD"; then
@@ -181,6 +176,10 @@ jobs:
           if [[ "$NEEDS_BUILD" == "false" ]]; then
             echo "$PKG" > output/status-skipped-$PKG.txt
           else
+            echo "Updating checksums for $PKG..."
+            if ! sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && updpkgsums"; then
+              echo "::warning::updpkgsums failed for $PKG; proceeding with existing checksums."
+            fi
             echo "Building $PKG with paru"
             ASSUME_PKGS=$(sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && source PKGBUILD && echo \${pkgname[@]}")
             ASSUME_ARGS=""
