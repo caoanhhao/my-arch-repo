@@ -1,4 +1,0 @@
-[omp-bun]
-source = "git"
-git = "https://github.com/can1357/oh-my-pi.git"
-prefix = "v"
