@@ -14,8 +14,6 @@ hyprsysteminfo
 mise-musl-bin
 nerd-fonts-sf-mono
 oh-my-pi-bin
-omacut
-omacut-debug
 omniroute-bin
 openai-codex-bin
 opencode-bin
