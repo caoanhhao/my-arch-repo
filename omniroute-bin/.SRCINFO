@@ -1,0 +1,21 @@
+pkgbase = omniroute-bin
+	pkgdesc = OmniRoute desktop app (prebuilt AppImage)
+	pkgver = 3.8.52
+	pkgrel = 1
+	url = https://github.com/diegosouzapw/OmniRoute
+	arch = x86_64
+	license = MIT
+	depends = fuse2
+	depends = hicolor-icon-theme
+	depends = libx11
+	depends = libxext
+	depends = nss
+	depends = glib2
+	optdepends = xdg-utils: open links/files with desktop defaults
+	provides = omniroute
+	conflicts = omniroute
+	options = !strip
+	source = OmniRoute-3.8.52.AppImage::https://github.com/diegosouzapw/OmniRoute/releases/download/v3.8.52/OmniRoute-3.8.52.AppImage
+	sha256sums = 453bbdc26f2eb9efb5041ae2fdd36cfc71fa742462a83503b7e05f5142a59c76
+
+pkgname = omniroute-bin

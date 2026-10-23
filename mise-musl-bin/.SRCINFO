@@ -1,0 +1,23 @@
+pkgbase = mise-musl-bin
+	pkgdesc = Portable musl build of mise: dev tools, env vars, task runner
+	pkgver = 2026.10.17
+	pkgrel = 1
+	url = https://github.com/jdx/mise
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	optdepends = bash-completion: bash completion support
+	optdepends = fish: fish completion and automatic environment activation
+	optdepends = zsh: zsh completion support
+	provides = mise
+	conflicts = mise
+	conflicts = mise-bin
+	conflicts = rtx
+	replaces = rtx
+	options = !debug
+	source_x86_64 = https://github.com/jdx/mise/releases/download/v2026.10.17/mise-v2026.10.17-linux-x64-musl.tar.xz
+	sha256sums_x86_64 = da0d9ace5d5b3321e391f15fbf8b53fcd65b9024e673ea51c5515189e5810416
+	source_aarch64 = https://github.com/jdx/mise/releases/download/v2026.10.17/mise-v2026.10.17-linux-arm64-musl.tar.xz
+	sha256sums_aarch64 = 566e04044756bfb5bf2ddd4d3d16172f5f4979e02d88cef7fbac726f9f59cf5f
+
+pkgname = mise-musl-bin
