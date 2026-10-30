@@ -26,7 +26,6 @@ python-lockfile
 reflector-rs
 sqlitestudio-bin
 stably-orca-bin
-unreal-engine-bin
 vscodium-bin
 zsh-auto-notify
 zsh-autosuggestions-git
