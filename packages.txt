@@ -1,16 +1,19 @@
-#####
 # AUR packages
+#####
 blueman-git
 checkupdates-with-aur
 claude-desktop-extra
 codex-desktop-git
 cwal-git
+fcitx5-lotus
+fcitx5-lotus-debug
 filmcraft-bin
 gridcraft-bin
 hyprgrass-meta
 hyprland-scratchpad-git
 hyprqt6engine
 hyprsysteminfo
+hypruse
 mise-musl-bin
 nerd-fonts-sf-mono
 oh-my-pi-bin
@@ -19,6 +22,7 @@ openai-codex-bin
 opencode-bin
 openssl-1.1
 phinger-cursors
+python-lockfile
 reflector-rs
 sqlitestudio-bin
 stably-orca-bin
